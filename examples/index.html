@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="../build.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+    body{
+      font-family: 'Roboto', sans-serif;
+      text-shadow: 0px 0px 10px #00d2ff;
+      color: #fff;
+      font-size: 32px;
+    }
+    h1{
+      font-size: 52px;
+    }
+    .dark{
+      background-color: rgba(0,0,0,0.2);
+      border-radius:50px;  
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      padding: 40px;
+    }
+    .main{
+      width: 1024px;
+      height: 768px;
+      overflow: hidden;
+    }
+    .menu{
+      width: 256px;
+      height: 768px;
+      text-align: center;
+    }
+    .menu ul{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    a.button{
+      display: inline-block;
+      width: 100%;
+      border-radius: 20px;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    a.button:hover{
+      background-color: #fff;
+      color: #888;
+    }
+    a.button:active{
+      background-color: #fff;
+      color: #888;
+      box-shadow: 0px 0px 50px #00d2ff;
+    }
+    a.imgLink{
+      width: 100%;
+      border-radius: 20px;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      background-color: #444;
+      border: 3px solid #444;
+      text-shadow: none;
+      display: block;
+    }
+    a.imgLink:hover{
+      border: 3px solid #fff;
+      background-color: #444;
+    }
+    .code{
+      white-space: pre;
+      font-size: 0.7em;
+      background-color: #000;
+      margin-bottom: 30px;
+    }
+    .next,.prev{
+      position: absolute;
+      bottom: 0px;
+      right: 30px;
+      display: inline-block;
+      width: auto !important;
+      padding: 20px 30px !important;
+    }
+    .prev{
+      right: auto;
+      left: 30px;
+    }
+    #page1{
+      position: relative;
+      height: 100%;
+    }
+    #page2, #page3, #page4{
+      display: none;
+      position: relative;
+      height: 100%;
+    }
+    .slide{
+      height:100%;
+    }
+    .slide:target #page1{
+      display: none;
+    }
+    #slide2:target #page2{
+      display: block;
+    }
+    #slide3:target #page3{
+      display: block;
+    }
+    #slide4:target #page4{
+      display: block;
+    }
+    #page4 ul{
+      list-style-type: square;
+      font-size: 0.8em;
+    }
+    </style>
+    <script>
+    AFRAME.registerComponent('showbutton', {
+      schema: {
+        'target': {type: 'selector'},
+      },
+      init: function () {
+        var show=false;    
+        this.el.addEventListener("click",()=>{
+          if(show){
+            this.data.target.setAttribute("visible","false");
+            this.el.querySelector("a").innerHTML="Show Box";
+          }else{
+            this.data.target.setAttribute("visible","true");
+            this.el.querySelector("a").innerHTML="Hide Box";
+          }
+          show=!show;
+        });
+      }
+    });
+    </script>
+  </head>
+  <body>
+    <div id="slide2" class="slide">
+    <div id="slide3" class="slide">
+    <div id="slide4" class="slide">
+    <a-scene fog="type: linear; color: #222222; far: 20;">
+      <a-assets>
+        <img id="floor" src="assets/floor.png">
+        <img id="tex1" src="assets/box.png">
+      </a-assets>
+      <a-plane material="src:#floor; repeat: 700 700; transparent: true;" height="500" width="500" rotation="-90 0 0"></a-plane>
+      <a-sky color="#222222"></a-sky>
+      <a-entity id="cameraRig">
+        <a-camera id="camera">
+        </a-camera>
+        <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .screen"></a-entity>
+        <a-entity laser-controls raycaster="objects: .screen;"></a-entity>
+      </a-entity>
+      <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="-2.712 2.5 -4.476" rotation="0 45 0">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="#" class="button">Home</a></li>
+          <li><a href="#slide2" class="button">CSS</a></li>
+          <li><a href="#slide3" class="button">Interactivity</a></li>
+          <li><a href="#slide4" class="button">Limitations</a></li>
+        </ul>
+      </a-entity>
+      <a-entity id="main" class="screen dark main" htmlembed="ppu:256" position="0 2.5 -5">
+        <div id="page1">
+          <h1>A-Frame HTML Embed Component</h1>
+          <p>HTML Embed is a component created for A-Frame. The HTML Embed component allows for arbitrary html to be inserted into your aframe scene. It allows you to update the display within A-Frame simply by manipulating the DOM as you normally would. 
+          </p>
+          <p>
+      In addition to rendering the html to the A-Frame scene it allows for interaction. Most css pseudo selectors such as hover, active, focus and target should work with interactivity enabled without any modifications to your css. Mouse events can be attached to the html elements as usual. </p>
+          <a href="#slide2" class="button next">Next Page</a>
+        </div>
+        <div id="page2">
+          <h1>Cascading Style Sheets (CSS)</h1>
+          <p>HTML Embed allows you to add interactivity by adding standard css interactions such as hover:
+          <div class="code">
+          .button{
+	          color: #000000;
+          }
+          .button:hover{
+	          color: #ffffff;
+          }
+          </div>
+          <div class="code">
+            &lt;a-scene&gt;
+	            &lt;a-entity htmlembed&gt;
+		            &lt;a href="#home" class="button">Home&lt;/a&gt;
+	            &lt;/a-entity&gt;
+            &lt;/a-scene&gt;
+          </div>
+          <a href="#" class="button prev">Prev Page</a>
+          <a href="#slide3" class="button next">Next Page</a>
+        </div>
+        <div id="page3">
+          <h1>Interactivity</h1>
+          <p>You can add javascript interactivity in the standard way either by events on the elements themselves or alternatively by adding event listeners to the DOM.</p>
+          <div class="code">  
+          cubebutton.addEventListener("click",function(){
+            if(show){
+              box.setAttribute("visible","false");
+              cubebutton.innerHTML="Show Box";
+            }else{
+              box.setAttribute("visible","true");
+              cubebutton.innerHTML="Hide Box";
+            }
+            show=!show;
+          });
+          </div>
+          <a-entity showbutton="target:#box"><a class="button" href="javascript:void(0)">Show Box</a></a-entity>
+          <a href="#slide2" class="button prev">Prev Page</a>
+          <a href="#slide4" class="button next">Next Page</a>
+        </div>
+        <div id="page4">
+          <h1>Limitations</h1>
+          <ul>
+            <li>All styles and images must be in the same origin or allow access via CORS; this allows the component to embed all of the assets required to render the html properly to the canvas via the foreignObject element. </li>
+            <li>transform-style css is limited to flat. This is mainly due to it not being rendered properly to canvas so element bounding for preserve-3d has not yet been implemented. If the rendering is fixed as some point I may go back and get it working as well.</li>
+            <li>"a-" tags do not render correctly as XHTML embeded into SVG, so any parent "a-" elements of the embed html will be converted to div tags for rendering. This may mean your css will require modification.</li>
+            <li>Elements that require rendering outside of the DOM such as the iframe and canvas element will not work.
+            <li>:before and :after pseudo elements can't be accessed via the DOM so they can't be used in the element to determine the object bounds. As such, use them with caution. </li>
+            <li>Form elements are not consistently rendered to the canvas element so some basic default styles are included for consistency.</li>
+            <li>Currently there is no support for css transitions.</li>
+          </ul>
+          <a href="#slide3" class="button prev">Prev Page</a>
+        </div>
+      </a-entity>
+      <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="2.712 2.5 -4.476" rotation="0 -45 0">
+        <h2>Links</h2>
+        <a class="imgLink" href="https://aframe.io/"><img src="assets/aframe.png" width="80" height="80"><div>A-Frame</div></a>
+        <a class="imgLink" href="https://github.com/supereggbert/aframe-htmlembed-component"><img src="assets/github.png" width="80" height="80"><div>Github</div></a>
+        <a class="imgLink" href="https://www.npmjs.com/package/aframe-htmlembed-component"><img src="assets/npm.png" width="80" height="80"><div>npm</div></a>
+      </a-entity>
+      <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
+    </a-scene>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
