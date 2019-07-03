@@ -497,7 +497,10 @@ class HTMLCanvas {
     var T2 = new THREE.Matrix4().makeTranslation(ox, oy, oz);
 
     transform = T2.multiply(transform).multiply(T1)
-
+    
+    // return if matrix determinate is not zero
+    if(transform.determinant()!=0) return [x,y];
+    
     // Inverse the transform so we can go from page space to element space
     var inverse = new THREE.Matrix4().getInverse(transform);
 
