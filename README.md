@@ -25,7 +25,7 @@ In addition to rendering the html to the A-Frame scene it allows for interaction
 
 | Method | Description |
 |--------|-------------|
-| forceRender | Forces the htmlembed component to be re-redner |
+| forceRender | Forces the htmlembed component to be re-render |
 
 
 ## Events
