@@ -113,17 +113,17 @@ Interactions are achived though the normal cursor and laser-controls components 
 
 ### Browser
 
-Install and use by directly including the  browser files:
+Install and use by directly including the browser files:
 ```html
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-  <script src="http://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
+  <script src="https://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
 </head>
 
 <body>
   <a-scene>
-    <a-entity htmlembed>
+    <a-entity position="0 1.6 -1" htmlembed>
 		<p>My HTML</p>
 	</a-entity>
   </a-scene>
