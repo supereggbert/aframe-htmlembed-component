@@ -73,8 +73,8 @@ AFRAME.registerComponent('htmlembed', {
   resize() {
     this.width = this.htmlcanvas.width / this.data.ppu;
     this.height = this.htmlcanvas.height / this.data.ppu;
-    this.screen.scale.x = this.width;
-    this.screen.scale.y = this.height;
+    this.screen.scale.x = Math.max(0.0001,this.width);
+    this.screen.scale.y = Math.max(0.0001,this.height);
   },
   update() {
     this.resize();
