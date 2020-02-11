@@ -46,29 +46,10 @@ AFRAME.registerComponent('htmlembed', {
     var screen = new THREE.Mesh(geometry, material);
     this.el.setObject3D('screen', screen);
     this.screen = screen;
-
-    this.el.addEventListener('raycaster-intersected', evt => {
-      this.raycaster = evt.detail.el;
-    });
-    this.el.addEventListener('raycaster-intersected-cleared', evt => {
-      this.htmlcanvas.clearHover();
-      this.raycaster = null;
-    });
-    this.el.addEventListener('mousedown', evt => {
-      if (evt instanceof CustomEvent) {
-        this.htmlcanvas.mousedown(this.lastX, this.lastY);
-      } else {
-        evt.stopPropagation();
-      }
-    });
-    this.el.addEventListener('mouseup', evt => {
-      if (evt instanceof CustomEvent) {
-        this.htmlcanvas.mouseup(this.lastX, this.lastY);
-      } else {
-        evt.stopPropagation();
-      }
-    });
-    this.resize();
+    this.handleRaycasterIntersected = this.handleRaycasterIntersected.bind(this)
+    this.handleRaycasterIntersectedCleared = this.handleRaycasterIntersectedCleared.bind(this)
+    this.handleMouseDown = this.handleMouseDown.bind(this)
+    this.handleMouseUp = this.handleMouseUp.bind(this)
   },
   resize() {
     this.width = this.htmlcanvas.width / this.data.ppu;
@@ -78,6 +59,48 @@ AFRAME.registerComponent('htmlembed', {
   },
   update() {
     this.resize();
+  },
+  pause() {
+    this.el.removeEventListener('raycaster-intersected', this.handleRaycasterIntersected);
+    this.el.removeEventListener('raycaster-intersected-cleared', this.handleRaycasterIntersectedCleared);
+    this.el.removeEventListener('mousedown', this.handleMouseDown);
+    this.el.removeEventListener('mouseup', this.handleMouseUp);
+  },
+  play() {
+    this.el.addEventListener('raycaster-intersected', this.handleRaycasterIntersected);
+    this.el.addEventListener('raycaster-intersected-cleared', this.handleRaycasterIntersectedCleared);
+    this.el.addEventListener('mousedown', this.handleMouseDown);
+    this.el.addEventListener('mouseup', this.handleMouseUp);
+    this.resize();
+  },
+  hide() {
+    this.el.setAttribute('visible', false);
+    if (this.isPlaying) this.pause()
+  },
+  show() {
+    this.el.setAttribute('visible', true);
+    if (this.isPlaying === false) this.play()
+  },
+  handleRaycasterIntersected(evt) {
+    this.raycaster = evt.detail.el;
+  },
+  handleRaycasterIntersectedCleared(evt) {
+    this.htmlcanvas.clearHover();
+    this.raycaster = null;
+  },
+  handleMouseDown(evt) {
+    if (evt instanceof CustomEvent) {
+      this.htmlcanvas.mousedown(this.lastX, this.lastY);
+    } else {
+      evt.stopPropagation();
+    }
+  },
+  handleMouseUp(evt) {
+    if (evt instanceof CustomEvent) {
+      this.htmlcanvas.mouseup(this.lastX, this.lastY);
+    } else {
+      evt.stopPropagation();
+    }
   },
   forceRender() {
     this.htmlcanvas.forceRender();
