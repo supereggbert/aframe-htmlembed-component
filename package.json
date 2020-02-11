@@ -5,7 +5,7 @@
   "main": "dist/build.js",
   "scripts": {
     "build": "rm -fR dist/* && webpack --mode=production",
-    "start": "webpack-dev-server --mode development --open-page examples/"
+    "start": "webpack-dev-server --mode development --open-page examples/ --https"
   },
   "author": "supereggbert",
   "license": "MIT",
