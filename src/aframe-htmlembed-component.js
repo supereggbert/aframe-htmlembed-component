@@ -9,10 +9,11 @@ AFRAME.registerComponent('htmlembed', {
     ppu: {
       type: 'number',
       default: 256
-    }
+    },
+    styleSheetId: { type: 'string', default: null}
   },
   init: function() {
-    var htmlcanvas = new HTMLCanvas(this.el, () => {
+    var htmlcanvas = new HTMLCanvas(this.el, this.data.styleSheetId, () => {
       if (texture) texture.needsUpdate = true;
     }, (event, data) => {
       switch (event) {
