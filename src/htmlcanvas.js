@@ -7,7 +7,7 @@
 })();
 
 class HTMLCanvas {
-  constructor(html, updateCallback, eventCallback) {
+  constructor(html, styleId, updateCallback, eventCallback) {
     if (!html) throw "Container Element is Required";
 
     this.updateCallback = updateCallback;
@@ -27,6 +27,8 @@ class HTMLCanvas {
     this.html.style.top = '0';
     this.html.style.left = '0';
     this.html.style.overflow = 'hidden';
+
+    this.styleId = styleId
 
 
     // We have to stop propergation of the mouse at the root of the embed HTML otherwise it may effect other elements of the page
@@ -144,7 +146,8 @@ class HTMLCanvas {
 
   // Add hack css rules to the page so they will update the css styles of the embed html
   csshack() {
-    var sheets = document.styleSheets;
+    var sheets = this.styleId ? [document.getElementById(this.styleId).sheet] : document.styleSheets;
+    
     for (var i = 0; i < sheets.length; i++) {
       try {
         var rules = sheets[i].cssRules;
@@ -262,7 +265,8 @@ class HTMLCanvas {
   // Generate the embed page CSS from all the page styles
   generatePageCSS() {
     // Fine all elements we are intrested in
-    var elements = Array.from(document.querySelectorAll("style, link[type='text/css'],link[rel='stylesheet']"));
+    var elements = this.styleId ? [document.getElementById(this.styleId)] : Array.from(document.querySelectorAll("style, link[type='text/css'],link[rel='stylesheet']"));    
+    
     var promises = [];
     for (var i = 0; i < elements.length; i++) {
       var element = elements[i];
@@ -438,7 +442,7 @@ class HTMLCanvas {
       this.html.style.display = 'block';
       // If embeded html elements dimensions have change then update the canvas
       if (this.width != this.html.offsetWidth || this.height != this.html.offsetHeight) {
-        this.width = this.html.offsetWidth;
+        this.width = this.html.offsetWidth;        
         this.height = this.html.offsetHeight;
         this.canvas.width = this.width;
         this.canvas.height = this.height;

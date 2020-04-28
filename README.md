@@ -20,6 +20,8 @@ In addition to rendering the html to the A-Frame scene it allows for interaction
 | Property | Default | Description |
 |----------|---------|-------------|
 | ppu | 256 | number of pixels to display per unit of the aframescene. |
+| styleSheetId | null | the id of the stylesheet containing the CSS relevant to the HTMLEmbed component, if used, it will only reload the CSS of that stylesheet, rather than the whole page. **recommended when using React**|
+
 
 ## Methods
 
