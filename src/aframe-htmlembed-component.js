@@ -9,9 +9,19 @@ AFRAME.registerComponent('htmlembed', {
     ppu: {
       type: 'number',
       default: 256
-    }
+    }, 
+	src:{
+	  type: 'string'
+	}
   },
-  init: function() {
+  init: function(html) {
+	if( html ) this.el.innerHTML = html 
+	if( !html && this.data.src){
+		fetch(this.data.src )
+		.then( (res) => res.text() )
+		.then( (html) => this.init(html) )
+		this.el.innerHTML = this.data.loaderhtml || 'loading..'
+	}
     var htmlcanvas = new HTMLCanvas(this.el, () => {
       if (texture) texture.needsUpdate = true;
     }, (event, data) => {
