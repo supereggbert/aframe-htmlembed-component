@@ -64,6 +64,8 @@ To use the component you just add the component to the A-Frame entity containing
 </a-scene>
 ```
 
+> NOTE: `src:` lets you reference a local file using `<a-entity htmlembed="src: content.html" position="0 0 -5">`
+
 ## Interactivity
 
 ### Using CSS
