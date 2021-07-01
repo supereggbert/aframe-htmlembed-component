@@ -146,14 +146,13 @@
     <div id="slide2" class="slide">
     <div id="slide3" class="slide">
     <div id="slide4" class="slide">
-    <a-scene fog="type: exponential; color: red; density:0.025s">
+    <a-scene fog="type: linear; color: #222222; far: 20;">
       <a-assets>
         <img id="floor" src="assets/floor.png">
         <img id="tex1" src="assets/box.png">
-        <img id="sky" src="assets/sky.jpg">
       </a-assets>
       <a-plane material="src:#floor; repeat: 700 700; transparent: true;" height="500" width="500" rotation="-90 0 0"></a-plane>
-      <a-sky color="green" material="fog: true"></a-sky>
+      <a-sky color="#222222"></a-sky>
 
 
       <!--
@@ -248,14 +247,13 @@
       </a-entity>
       <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="2.712 2.5 -4.476" rotation="0 -45 0">
         <h2>Links</h2>
-        <a class="imgLink" href="./a.html"><img src="assets/aframe.png" width="80" height="80"><div>b</div></a>
+        <a class="imgLink" href="./"><img src="assets/aframe.png" width="80" height="80"><div>Index</div></a>
         <a class="imgLink" href="https://github.com/supereggbert/aframe-htmlembed-component"><img src="assets/github.png" width="80" height="80"><div>Github</div></a>
         <a class="imgLink" href="https://www.npmjs.com/package/aframe-htmlembed-component"><img src="assets/npm.png" width="80" height="80"><div>npm</div></a>
       </a-entity>
       <!--HTML Menu Ends-->
-      <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
-      <a-link href="a.html" title="my home" ></a-link>
-    </a-scene>
+     <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
+     <a-link href="index.html"  title="my home" position="0 5 0"></a-link>
     </div>
     </div>
     </div>
