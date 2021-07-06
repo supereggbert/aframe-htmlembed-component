@@ -146,14 +146,14 @@
     <div id="slide2" class="slide">
     <div id="slide3" class="slide">
     <div id="slide4" class="slide">
-    <a-scene fog="type: exponential; color: red; density:0.025s">
+    <a-scene fog="type: linear; color: #fff; density:0.25">
       <a-assets>
         <img id="floor" src="assets/floor.png">
         <img id="tex1" src="assets/box.png">
-        <img id="sky" src="assets/sky.jpg">
+        <img id="sky" src="assets/bgDark.jpg">
       </a-assets>
       <a-plane material="src:#floor; repeat: 700 700; transparent: true;" height="500" width="500" rotation="-90 0 0"></a-plane>
-      <a-sky color="green" material="fog: true"></a-sky>
+      <a-sky src="#sky" material="fog: false"></a-sky>
 
 
       <!--
@@ -185,7 +185,7 @@
       </a-entity>
       <a-entity id="main" class="screen dark main" htmlembed="ppu:256" position="0 2.5 -5">
         <div id="page1">
-          <h1>A-Frame HTML Embed Component</h1>
+          <h1>Start up 2021 winter class</h1>
           <p>HTML Embed is a component created for A-Frame. The HTML Embed component allows for arbitrary html to be inserted into your aframe scene. It allows you to update the display within A-Frame simply by manipulating the DOM as you normally would. 
           </p>
           <p>
