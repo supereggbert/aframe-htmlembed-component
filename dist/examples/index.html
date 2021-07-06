@@ -175,84 +175,44 @@
         <a-entity laser-controls raycaster="objects: .screen;"></a-entity>            
         </a-entity>
       
+        <a-scene>
+          <a-assets>
+            <img id="my-image" src="assets/pa.png" >
+          </a-assets>
+        
+          <!-- Using the asset management system. -->
+          <a-image src="#my-image" width="11" height="6" position="-0.06 4.48 -5.1"></a-image>
+        
+          <!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
+          <a-image src="assets/pa.png"></a-image>
+        </a-scene>
       <!--HTML MENU-->
-      <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="-2.712 2.5 -4.476" rotation="0 45 0">
-        <h2>Menu</h2>
-        <ul>
-          <li><a href="#" class="mybutton">Home</a></li>
-          <li><a href="#slide2" class="mybutton">CSS</a></li>
-          <li><a href="#slide3" class="mybutton">Interactivity</a></li>
-          <li><a href="#slide4" class="mybutton">Limitations</a></li>
-        </ul>
-      </a-entity>
+      
       <a-entity id="main" class="screen dark main" htmlembed="ppu:256" position="0 2.5 -5">
         <div id="page1">
-          <h1>Start up 2021 winter class</h1>
-          <p>HTML Embed is a component created for A-Frame. The HTML Embed component allows for arbitrary html to be inserted into your aframe scene. It allows you to update the display within A-Frame simply by manipulating the DOM as you normally would. 
+          <h1 align="center">Startup class and Matariki 2021</h1>
+          <p> This Page is to acknowledge the class and coordinators
           </p>
           <p>
-      In addition to rendering the html to the A-Frame scene it allows for interaction. Most css pseudo selectors such as hover, active, focus and target should work with interactivity enabled without any modifications to your css. Mouse events can be attached to the html elements as usual. </p>
-          <a href="#slide2" class="mybutton next">Next Page</a>
+       </p>
+         
         </div>
-        <div id="page2">
-          <h1>Cascading Style Sheets (CSS)</h1>
-          <p>HTML Embed allows you to add interactivity by adding standard css interactions such as hover:
-          <div class="code">
-          .button{
-	          color: #000000;
-          }
-          .button:hover{
-	          color: #ffffff;
-          }
-          </div>
-          <div class="code">
-            &lt;a-scene&gt;
-	            &lt;a-entity htmlembed&gt;
-		            &lt;a href="#home" class="button">Home&lt;/a&gt;
-	            &lt;/a-entity&gt;
-            &lt;/a-scene&gt;
-          </div>
-          <a href="#" class="mybutton prev">Prev Page</a>
-          <a href="#slide3" class="mybutton next">Next Page</a>
-        </div>
-        <div id="page3">
-          <h1>Interactivity</h1>
-          <p>You can add javascript interactivity in the standard way either by events on the elements themselves or alternatively by adding event listeners to the DOM.</p>
-          <div class="code">  
-          cubebutton.addEventListener("click",function(){
-            if(show){
-              box.setAttribute("visible","false");
-              cubebutton.innerHTML="Show Box";
-            }else{
-              box.setAttribute("visible","true");
-              cubebutton.innerHTML="Hide Box";
-            }
-            show=!show;
-          });
-          </div>
-          <a-entity showbutton="target:#box"><a class="mybutton" href="javascript:void(0)">Show Box</a></a-entity>
-          <a href="#slide2" class="mybutton prev">Prev Page</a>
-          <a href="#slide4" class="mybutton next">Next Page</a>
-        </div>
-        <div id="page4">
-          <h1>Limitations</h1>
-          <ul>
-            <li>All styles and images must be in the same origin or allow access via CORS; this allows the component to embed all of the assets required to render the html properly to the canvas via the foreignObject element. </li>
-            <li>transform-style css is limited to flat. This is mainly due to it not being rendered properly to canvas so element bounding for preserve-3d has not yet been implemented. If the rendering is fixed as some point I may go back and get it working as well.</li>
-            <li>"a-" tags do not render correctly as XHTML embeded into SVG, so any parent "a-" elements of the embed html will be converted to div tags for rendering. This may mean your css will require modification.</li>
-            <li>Elements that require rendering outside of the DOM such as the iframe and canvas element will not work.
-            <li>:before and :after pseudo elements can't be accessed via the DOM so they can't be used in the element to determine the object bounds. As such, use them with caution. </li>
-            <li>Form elements are not consistently rendered to the canvas element so some basic default styles are included for consistency.</li>
-            <li>Currently there is no support for css transitions.</li>
-          </ul>
-          <a href="#slide3" class="mybutton prev">Prev Page</a>
-        </div>
+     
       </a-entity>
       <a-entity id="menu" class="screen menu dark" htmlembed="ppu:256" position="2.712 2.5 -4.476" rotation="0 -45 0">
         <h2>Links</h2>
-        <a class="imgLink" href="./a.html"><img src="assets/aframe.png" width="80" height="80"><div>b</div></a>
+        <a class="imgLink" href="https://reconnected.co.nz"><img src="assets/logo1.png" width="80" height="80"><div>Reconnected.co.nz</div></a>
         <a class="imgLink" href="https://github.com/supereggbert/aframe-htmlembed-component"><img src="assets/github.png" width="80" height="80"><div>Github</div></a>
         <a class="imgLink" href="https://www.npmjs.com/package/aframe-htmlembed-component"><img src="assets/npm.png" width="80" height="80"><div>npm</div></a>
+      </a-entity>
+      <a-entity id="menu" id="updateMe" class="screen menu dark" htmlembed="ppu:256" position="3.78 2.5 -3.588" rotation="0 -45 0">
+        <h2>Links</h2>
+        <a class="imgLink" href="https://laserfocus.co.nz"><img src="assets/logo2.png" width="80" height="80"><div>Laserfocus.co.nz</div></a>
+        <a class="imgLink" ><div><h1>Laserfocus</h1>
+          <p>Laser Focus helps business to showcase their space more effectively online. We use the latest in photo and mapping technology to allow our clients to increase their leads, improve their sales processes and induct their staff onto their sites. Taking away the barriers, increasing their engagement and ensuring their viewers have enough information to take the next steps towards the desired outcome.
+          </p>
+          </div>
+       </div></a>
       </a-entity>
       <!--HTML Menu Ends-->
       <a-box material="src:#tex1" scale="0.5 0.5 0.5" position="0 0.5 -4" id="box" visible="false"></a-box>
