@@ -34,7 +34,7 @@ AFRAME.registerComponent('htmlembed', {
       }
     });
     this.htmlcanvas = htmlcanvas;
-    var texture = new THREE.CanvasTexture(htmlcanvas.canvas);
+    var texture = new THREE.Texture(htmlcanvas.canvas);
     texture.minFilter = THREE.LinearFilter;
     texture.wrapS = THREE.ClampToEdgeWrapping;
     texture.wrapT = THREE.ClampToEdgeWrapping;
