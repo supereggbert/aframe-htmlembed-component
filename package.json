@@ -1,6 +1,6 @@
 {
-  "name": "aframe-htmlembed-component-1.3.0-ready",
-  "version": "1.0.1",
+  "name": "aframe-htmlembed-component",
+  "version": "1.0.0",
   "description": "HTML Embed is a component created for A-Frame. The HTML Embed component allows for arbitrary html to be inserted into your aframe scene. It allows you to update the display within A-Frame simply by manipulating the DOM as you normally would.",
   "main": "dist/build.js",
   "scripts": {
