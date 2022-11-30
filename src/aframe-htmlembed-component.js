@@ -13,7 +13,7 @@ AFRAME.registerComponent('htmlembed', {
   },
   init: function() {
     var htmlcanvas = new HTMLCanvas(this.el, () => {
-      if (texture) texture.needsUpdate = true;
+      //if (texture) texture.needsUpdate = true;
     }, (event, data) => {
       switch (event) {
         case 'resize':
